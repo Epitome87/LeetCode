@@ -1,0 +1,68 @@
+# [Contains Duplicate](https://leetcode.com/problems/contains-duplicate)
+
+## Description
+
+Given an integer array `nums`, return `true` if any value appears at least twice in the array, and return `false` if every element is distinct.
+
+**Example 1:**
+
+Input: nums = [1,2,3,1]
+Output: true
+
+**Example 2:**
+
+Input: nums = [1,2,3,4]
+Output: false
+
+**Example 3:**
+
+Input: nums = [1,1,1,3,3,4,3,2,4,2]
+Output: true
+
+**Constraints:**
+
+- 1 <= nums.length <= 10^5
+- -10^9 <= nums[i] <= 10^9
+
+## My Solution
+
+**JavaScript**
+
+```js
+const containsDuplicate = (nums) => {
+  const set = new Set();
+  for (let num of nums) {
+    if (set.has(num)) return true;
+    set.add(num);
+  }
+  return false;
+};
+```
+
+| Runtime                               | Memory                                |
+| ------------------------------------- | ------------------------------------- |
+| 83ms                                  | 54.57MB                               |
+| Beats 68.55% of users with JavaScript | Beats 47.19% of users with JavaScript |
+
+| Time Complexity    | Space Complexity |
+| ------------------ | ---------------- |
+| O(N) + O(N) = O(N) | O(N)             |
+
+**Explanation:**
+
+Each Set insertion is O(1), so inserting N elements is O(N).
+Our Set can contain up to N elements in the case where no duplicates are found.
+
+```js
+const containsDuplicate = (nums) => new Set(nums).size !== nums.length;
+```
+
+| Runtime                               | Memory                                |
+| ------------------------------------- | ------------------------------------- |
+| 83ms                                  | 54.57MB                               |
+| Beats 68.55% of users with JavaScript | Beats 47.19% of users with JavaScript |
+
+```js
+// This solution is TOO SLOW to pass!
+const containsDuplicate = (nums) => nums.some((num) => nums.indexOf(num) !== nums.lastIndexOf(num));
+```
